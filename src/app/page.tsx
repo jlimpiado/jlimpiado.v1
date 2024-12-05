@@ -1,101 +1,139 @@
-import Image from "next/image";
+import {Card, Highlight, Nav, TextSlider} from "@/app/components";
+import {CardPropsType, CardType} from "@/app/types";
+import MailIcon from "@/app/icons/Mail.svg";
+import GithubIcon from "@/app/icons/Github.svg";
+import LinkedinIcon from "@/app/icons/Linkedin.svg";
+
+const links = [
+    {
+        Icon: MailIcon,
+        href: "mailto:jblimpiado@gmail.com",
+    },
+    {
+        Icon: GithubIcon,
+        href: "https://github.com/jlimpiado",
+    },
+    {
+        Icon: LinkedinIcon,
+        href: "https://www.linkedin.com/in/joshua-limpiado-2000/",
+    },
+]
+
+const experiences: CardPropsType[] = [
+    {
+        type: CardType.EXP,
+        title: "Front-end Development Specialist | DSSE",
+        description: <><Highlight>Design</Highlight>, <Highlight>develop</Highlight>,
+            and <Highlight>enhance</Highlight> features, functionalities, and user
+            interfaces. <Highlight>Maintaining</Highlight> and <Highlight>optimization</Highlight> the
+            existing project. Attending to the demands’ requirements to make the critical components
+            of the project <Highlight>work</Highlight> and <Highlight>function</Highlight>. While
+            simultaneously cultivate
+            a <Highlight>positive</Highlight> and <Highlight>healthy</Highlight> working
+            environment.</>,
+        tags: ['ReactJS', 'Typescript', 'Javascript', 'SCSS'],
+        years: ['2022', '2024']
+    }
+]
+
+const projects: CardPropsType[] = [
+    {
+        type: CardType.PROJ,
+        title: "POMO",
+        description: <>Web app for those who uses and will be using the <Highlight>Pomodoro
+            technique</Highlight> to do productive works.</>,
+        tags: ['ReactJS', 'Typescript', 'Javascript', 'CSS'],
+        imgUrl: ""
+    },
+    {
+        type: CardType.PROJ,
+        title: "jlimpiado.v1",
+        description: <>My personal portfolio website. Color picked and designed by yours truly,
+            added some revisions and personal flavors but heavily inspired by <Highlight>Brittany
+                Chiang’s</Highlight> portfolio website.</>,
+        tags: ['ReactJS', 'Typescript', 'NextJS', 'TailwindCSS'],
+        imgUrl: ""
+    },
+    {
+        type: CardType.PROJ,
+        title: "Weather APP",
+        description: <>One of my first beginner projects where I build a Weather checker web
+            application. It uses Openweathermap’s free API to search for the city and it’s weather
+            for the week.</>,
+        tags: ['ReactJS', 'Typescript', 'ViteJS', 'TailwindCSS'],
+        imgUrl: ""
+    },
+]
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    return (
+        <main
+            className="min-h-screen max-w-screen-xl px-24 mx-auto grid place-items-center font-[family-name:var(--font-poppins-regular)]">
+            {/*<section className="h-screen grid place-items-center">*/}
+            {/*    <h1 className="flex items-baseline gap-[0.05em] font-[family-name:var(--font-josefin-slab)] text-midnight-50 text-[70px]">*/}
+            {/*        J<TextSlider text={"OSHUA"}/>L<TextSlider text={"IMPIADO"}/>*/}
+            {/*    </h1>*/}
+            {/*</section>*/}
+            <section className="flex min-h-screen">
+                <header className="sticky top-0 w-[48%] max-h-screen py-20 flex flex-col justify-between">
+                    <section>
+                        <div className="mb-[30px]">
+                            <h2 className="font-[family-name:var(--font-josefin-slab)] text-6xl text-midnight-50">JL</h2>
+                            <p className="text-midnight-50">DEVELOPER</p>
+                        </div>
+                        <Nav/>
+                    </section>
+                    <div className="flex flex-col gap-[30px]">
+                        {
+                            links.map((link, idx) => (
+                                <a key={`${link}@${idx}`} href={link.href}>
+                                    <link.Icon className="hover:text-midnight-50" />
+                                </a>
+                            ))
+                        }
+                    </div>
+                </header>
+                <section className="w-[52%] py-20 flex flex-col gap-[200px]">
+                    <div>
+                        <p>
+                            Hi there! My name is Joshua Limpiado, and I’m a Front-end Developer, <Highlight>for now
+                            (&gt;ᴗ•)</Highlight>.<br/><br/>
+                            Keeping myself <Highlight>curious</Highlight> is what keeps me going in tackling this field.
+                            I
+                            have been a Front-end developer for <Highlight>2 years </Highlight>now, but still has a lot
+                            to
+                            learn. Several things I learned in the projects I worked on; not all new things
+                            are <Highlight>stable
+                            and usable</Highlight> but it’s not bad to <Highlight>learn and try it out</Highlight> also,
+                            developers are <Highlight>scientists</Highlight> after all,
+                            heheh; <Highlight>maintaining</Highlight> and <Highlight>optimizing</Highlight> comes in
+                            pair;
+                            lastly, <Highlight>UI/UX</Highlight> are not
+                            everything, <Highlight>functionality</Highlight> and <Highlight>performance</Highlight> seal
+                            the
+                            deal.<br/><br/>
+                            Now, currently in search for an environment where I can let my thoughts be free and explore
+                            the
+                            vast world of tech. Offer clear insights and demonstrate strong skills to produce and
+                            develop <Highlight>usable</Highlight> and <Highlight>impactful</Highlight>.
+                        </p>
+                    </div>
+                    <div>
+                        {
+                            experiences.map((experience, idx) => (
+                                <Card key={`${idx}-${experience.title}`}{...experience} />
+                            ))
+                        }
+                    </div>
+                    <div className="flex flex-col gap-5">
+                        {
+                            projects.map((project, idx) => (
+                                <Card key={`${idx}-${project.title}`} {...project} />
+                            ))
+                        }
+                    </div>
+                </section>
+            </section>
+        </main>
+    )
 }
