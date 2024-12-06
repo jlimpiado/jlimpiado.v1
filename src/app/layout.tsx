@@ -15,8 +15,11 @@ const josefinSlab = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "JL",
+  title: "Joshua Limpiado",
   description: "Joshua Limpiado's Personal Portfolio website",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
