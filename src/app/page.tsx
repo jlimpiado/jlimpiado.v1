@@ -1,4 +1,9 @@
-import {Card, Highlight, Nav, TextSlider} from "@/app/components";
+import {
+    Card,
+    Highlight,
+    Nav,
+    // TextSlider
+} from "@/app/components";
 import {CardPropsType, CardType} from "@/app/types";
 import MailIcon from "@/app/icons/Mail.svg";
 import GithubIcon from "@/app/icons/Github.svg";
