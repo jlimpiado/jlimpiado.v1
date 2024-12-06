@@ -13,8 +13,10 @@ export enum CardType {
     PROJ = "projects"
 }
 
+export type YearsType = number | string;
+
 export type CardPropsType =
-    | CardObj & {type: CardType.EXP; years: Array<number|string>}
+    | CardObj & {type: CardType.EXP; years: [YearsType, YearsType]}
     | CardObj & {type: CardType.PROJ; imgUrl: string | StaticImageData}
 
 export type CardTitlePropsType = {

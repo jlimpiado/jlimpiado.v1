@@ -78,15 +78,14 @@ const projects: CardPropsType[] = [
 
 export default function Home() {
     return (
-        <main
-            className="min-h-screen max-w-screen-xl px-24 mx-auto grid place-items-center font-[family-name:var(--font-poppins-regular)]">
+        <main className="min-h-screen max-w-screen-xl lg:px-24 px-4 mx-auto grid place-items-center font-[family-name:var(--font-poppins-regular)]">
             {/*<section className="h-screen grid place-items-center">*/}
             {/*    <h1 className="flex items-baseline gap-[0.05em] font-[family-name:var(--font-josefin-slab)] text-midnight-50 text-[70px]">*/}
             {/*        J<TextSlider text={"OSHUA"}/>L<TextSlider text={"IMPIADO"}/>*/}
             {/*    </h1>*/}
             {/*</section>*/}
-            <section className="flex min-h-screen">
-                <header className="sticky top-0 w-[48%] max-h-screen py-20 flex flex-col justify-between">
+            <section className="lg:flex min-h-screen">
+                <header className="lg:sticky lg:top-0 lg:w-[48%] max-h-screen py-20 flex flex-col justify-between">
                     <section>
                         <div className="mb-[30px]">
                             <h2 className="font-[family-name:var(--font-josefin-slab)] text-6xl text-midnight-50">JL</h2>
@@ -94,7 +93,7 @@ export default function Home() {
                         </div>
                         <Nav/>
                     </section>
-                    <div className="flex flex-col gap-[30px]">
+                    <div className="flex lg:flex-col gap-[30px]">
                         {
                             links.map((link, idx) => (
                                 <a key={`${link}@${idx}`} href={link.href}>
@@ -104,7 +103,7 @@ export default function Home() {
                         }
                     </div>
                 </header>
-                <section className="w-[52%] py-20 flex flex-col gap-[200px]">
+                <section className="lg:w-[52%] py-20 flex flex-col gap-[200px]">
                     <div data-nav="about">
                         <p>
                             Hi there! My name is Joshua Limpiado, and I’m a Front-end Developer, <Highlight>for now

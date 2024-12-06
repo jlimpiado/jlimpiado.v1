@@ -26,7 +26,7 @@ const Card = (props: CardPropsType) => {
     return (
         <div className={cn(
             "group",
-            "p-[25px]",
+            "lg:p-[25px] p-4",
             "flex flex-col gap-2.5",
             "rounded-[20px]",
             "cursor-pointer",
@@ -36,17 +36,26 @@ const Card = (props: CardPropsType) => {
         )}>
             <header
                 className={cn(
-                    'flex justify-between items-center'
+                    'flex flex-col lg:flex-row lg:justify-between lg:items-center'
                 )}
             >
                 <CardTitle
                     title={title}
                     link={props.externalLink}
                 />
+                {
+                    type === CardType.EXP && (
+                        <span>
+                            {props.years.map((year, idx) => (
+                                idx === 1 ? year : `${year} - `
+                            ))}
+                        </span>
+                    )
+                }
             </header>
             <div className={cn(
                 "grid",
-                type === CardType.PROJ ? "grid-cols-[1fr_200px]" : ""
+                type === CardType.PROJ ? "lg:grid-cols-[1fr_200px]" : ""
             )}>
                 <p className={cn(
                     "text-[14px]",
@@ -58,10 +67,10 @@ const Card = (props: CardPropsType) => {
                     )
                 }
             </div>
-            <div className="text-[12px]">
+            <div className="flex gap-2.5 text-[12px]">
                 {
                     tags.map((tag, index) => (
-                        <span key={`${tag}@${index}`} className="inline-block bg-midnight-900 text-midnight-200 rounded-2xl px-2.5 py-1 even:mx-2.5">{tag}</span>
+                        <span key={`${tag}@${index}`} className="inline-block bg-midnight-900 text-midnight-200 rounded-2xl px-2.5 py-1">{tag}</span>
                     ))
                 }
             </div>

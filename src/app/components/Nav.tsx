@@ -83,7 +83,7 @@ const Nav = () => {
         }
     }, [])
     return (
-        <nav ref={navRef}>
+        <nav className="hidden lg:block" ref={navRef}>
             <ul className="flex flex-col gap-[30px] relative">
                 <span
                     style={{top: activeNav * 60}}
