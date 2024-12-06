@@ -1,5 +1,5 @@
 "use client"
-import {PropsWithChildren, useState} from "react";
+import {PropsWithChildren, useEffect, useRef, useState} from "react";
 import {cn} from "../utils";
 
 const NavItems = ({children, activeNav, handleActiveNav}: PropsWithChildren<{activeNav?: boolean, handleActiveNav: () => void}>) => {
@@ -31,9 +31,59 @@ const NavItems = ({children, activeNav, handleActiveNav}: PropsWithChildren<{act
 }
 
 const Nav = () => {
-    const [activeNav, setActiveNav] = useState<number>(0)
+    const [activeNav, setActiveNav] = useState<number>(0);
+    const isClickedRef = useRef(false);
+    const navRef = useRef<HTMLDivElement>(null);
+    const aboutDiv = useRef<HTMLDivElement|null>(null);
+    const experiencesDiv = useRef<HTMLDivElement|null>(null);
+    const projectsDiv = useRef<HTMLDivElement|null>(null);
+
+    const scrollElement = (key: string) => {
+        const element = document.querySelector(`div[data-nav=${key}]`)
+        if(element) {
+            const top = (element.getBoundingClientRect().top + document.documentElement.scrollTop) - 194;
+            window.scrollTo({top, behavior: "smooth"});
+        }
+    }
+    useEffect(() => {
+        aboutDiv.current = document.querySelector("div[data-nav='about']")
+        experiencesDiv.current = document.querySelector("div[data-nav='experiences']")
+        projectsDiv.current = document.querySelector("div[data-nav='projects']")
+
+        const handleTrackScroll = () => {
+            if(navRef.current && aboutDiv.current && experiencesDiv.current && projectsDiv.current) {
+                const navY = navRef.current.getBoundingClientRect().y;
+                const experiencesY = experiencesDiv.current.getBoundingClientRect().y;
+                const projectsY = projectsDiv.current.getBoundingClientRect().y;
+                if(isClickedRef.current) return;
+                if(projectsY <= navY) {
+                    setActiveNav(2)
+                } else if(experiencesY <= navY) {
+                    setActiveNav(1)
+                } else {
+                    setActiveNav(0)
+                }
+            }
+        }
+
+        const handleScroll = () => {
+            requestAnimationFrame(handleTrackScroll)
+        }
+
+        const handleResetIsClicked = () => {
+            isClickedRef.current = false;
+        }
+
+        document.addEventListener('scroll', handleScroll);
+        document.addEventListener('scrollend', handleResetIsClicked);
+
+        return () => {
+            document.removeEventListener('scroll', handleScroll);
+            document.removeEventListener('scrollend', handleResetIsClicked);
+        }
+    }, [])
     return (
-        <nav>
+        <nav ref={navRef}>
             <ul className="flex flex-col gap-[30px] relative">
                 <span
                     style={{top: activeNav * 60}}
@@ -45,7 +95,11 @@ const Nav = () => {
                 ></span>
                 {["ABOUT", "EXPERIENCES", "PROJECTS"].map((label, idx) => (
                     <NavItems
-                        handleActiveNav={() => setActiveNav(idx)}
+                        handleActiveNav={() => {
+                            isClickedRef.current = true
+                            setActiveNav(idx)
+                            scrollElement(label.toLowerCase())
+                        }}
                         key={`${label}-${idx}`}
                         activeNav={idx === activeNav}>
                         {label}

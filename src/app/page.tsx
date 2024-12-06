@@ -100,7 +100,7 @@ export default function Home() {
                     </div>
                 </header>
                 <section className="w-[52%] py-20 flex flex-col gap-[200px]">
-                    <div>
+                    <div data-nav="about">
                         <p>
                             Hi there! My name is Joshua Limpiado, and I’m a Front-end Developer, <Highlight>for now
                             (&gt;ᴗ•)</Highlight>.<br/><br/>
@@ -124,14 +124,14 @@ export default function Home() {
                             develop <Highlight>usable</Highlight> and <Highlight>impactful</Highlight>.
                         </p>
                     </div>
-                    <div>
+                    <div data-nav="experiences">
                         {
                             experiences.map((experience, idx) => (
                                 <Card key={`${idx}-${experience.title}`}{...experience} />
                             ))
                         }
                     </div>
-                    <div className="flex flex-col gap-5">
+                    <div data-nav="projects" className="flex flex-col gap-5">
                         {
                             projects.map((project, idx) => (
                                 <Card key={`${idx}-${project.title}`} {...project} />
