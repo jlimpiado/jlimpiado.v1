@@ -1,6 +1,20 @@
 import Image from 'next/image';
-import {CardPropsType, CardType} from "@/app/types";
+import {CardPropsType, CardTitlePropsType, CardType} from "@/app/types";
 import {cn} from "@/app/utils";
+import ExternalLinkIcon from "@/app/icons/External_link.svg";
+
+const CardTitle = (props: CardTitlePropsType) => {
+    if(props.link !== undefined) return (
+        <a href={props.link} target="_blank" rel="noopener noreferrer" className="flex gap-2 items-center group-hover:text-midnight-600">
+            <h3>{props.title}</h3>
+            <ExternalLinkIcon />
+        </a>
+    )
+
+    return (
+        <h3 className="group-hover:text-midnight-600">{props.title}</h3>
+    )
+}
 
 const Card = (props: CardPropsType) => {
     const {
@@ -25,25 +39,14 @@ const Card = (props: CardPropsType) => {
                     'flex justify-between items-center'
                 )}
             >
-                <h3 className="group-hover:text-midnight-600">{title}</h3>
-                {
-                    type === CardType.EXP && (
-                        <p className="text-[14px]">
-                            {
-                                props.years.map((year, index) => {
-                                    if(index === props.years.length - 1) {
-                                        return year
-                                    }
-                                    return `${year} - `
-                                })
-                            }
-                        </p>
-                    )
-                }
+                <CardTitle
+                    title={title}
+                    link={props.externalLink}
+                />
             </header>
             <div className={cn(
                 "grid",
-                type === CardType.PROJ ? "grid-cols-[1fr_112px]" : ""
+                type === CardType.PROJ ? "grid-cols-[1fr_200px]" : ""
             )}>
                 <p className={cn(
                     "text-[14px]",
@@ -51,9 +54,7 @@ const Card = (props: CardPropsType) => {
                 )}>{description}</p>
                 {
                     type === CardType.PROJ && (
-                        <div className="rounded-[5px] bg-midnight-900 size-28">
-                            {props.imgUrl.length > 0 && <Image src={props.imgUrl} alt={title}/>}
-                        </div>
+                        <Image src={props.imgUrl} alt={title} className="aspect-video rounded border-2 border-midnight-600"/>
                     )
                 }
             </div>

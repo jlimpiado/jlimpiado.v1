@@ -3,6 +3,9 @@ import {CardPropsType, CardType} from "@/app/types";
 import MailIcon from "@/app/icons/Mail.svg";
 import GithubIcon from "@/app/icons/Github.svg";
 import LinkedinIcon from "@/app/icons/Linkedin.svg";
+import PomoImg from '@assets/pomo.png';
+import JLImg from "@assets/jlimpiadov1.png";
+import WeatherImg from "@assets/weather-app.png";
 
 const links = [
     {
@@ -23,6 +26,7 @@ const experiences: CardPropsType[] = [
     {
         type: CardType.EXP,
         title: "Front-end Development Specialist | DSSE",
+        externalLink: "https://dsseservices.com/dynamic-solutions",
         description: <><Highlight>Design</Highlight>, <Highlight>develop</Highlight>,
             and <Highlight>enhance</Highlight> features, functionalities, and user
             interfaces. <Highlight>Maintaining</Highlight> and <Highlight>optimization</Highlight> the
@@ -40,10 +44,11 @@ const projects: CardPropsType[] = [
     {
         type: CardType.PROJ,
         title: "POMO",
+        externalLink: "https://jlimpiado.github.io/pomo",
         description: <>Web app for those who uses and will be using the <Highlight>Pomodoro
             technique</Highlight> to do productive works.</>,
         tags: ['ReactJS', 'Typescript', 'Javascript', 'CSS'],
-        imgUrl: ""
+        imgUrl: PomoImg
     },
     {
         type: CardType.PROJ,
@@ -52,16 +57,17 @@ const projects: CardPropsType[] = [
             added some revisions and personal flavors but heavily inspired by <Highlight>Brittany
                 Chiang’s</Highlight> portfolio website.</>,
         tags: ['ReactJS', 'Typescript', 'NextJS', 'TailwindCSS'],
-        imgUrl: ""
+        imgUrl: JLImg
     },
     {
         type: CardType.PROJ,
         title: "Weather APP",
+        externalLink: "https://jbl-weather-react-project.netlify.app/",
         description: <>One of my first beginner projects where I build a Weather checker web
             application. It uses Openweathermap’s free API to search for the city and it’s weather
             for the week.</>,
         tags: ['ReactJS', 'Typescript', 'ViteJS', 'TailwindCSS'],
-        imgUrl: ""
+        imgUrl: WeatherImg
     },
 ]
 
