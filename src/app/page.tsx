@@ -11,6 +11,7 @@ import LinkedinIcon from "@/app/icons/Linkedin.svg";
 import PomoImg from '@assets/pomo.png';
 import JLImg from "@assets/jlimpiadov1.png";
 import WeatherImg from "@assets/weather-app.png";
+import ExternalLinkIcon from "@/app/icons/External_link.svg";
 
 const links = [
     {
@@ -134,6 +135,13 @@ export default function Home() {
                                 <Card key={`${idx}-${experience.title}`}{...experience} />
                             ))
                         }
+                        <a
+                            className="flex items-center gap-2.5 hover:text-midnight-800 hover:underline px-[25px] mt-[24px]"
+                            href="/jblimpiado_cv.pdf"
+                            target="_blank"
+                        >
+                            Wanna see my CV? <ExternalLinkIcon/>
+                        </a>
                     </div>
                     <div data-nav="projects" className="flex flex-col gap-5">
                         {
