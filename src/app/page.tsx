@@ -90,7 +90,7 @@ export default function Home() {
                     <section>
                         <div className="mb-[30px]">
                             <h2 className="font-[family-name:var(--font-josefin-slab)] text-6xl text-midnight-50">JL</h2>
-                            <p className="text-midnight-50">DEVELOPER</p>
+                            <p className="text-midnight-50">FRONT-END DEVELOPER</p>
                         </div>
                         <Nav/>
                     </section>

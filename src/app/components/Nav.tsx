@@ -13,16 +13,18 @@ const NavItems = ({children, activeNav, handleActiveNav}: PropsWithChildren<{act
                 "item-center",
                 "cursor-pointer",
                 "h-[30px]",
+                "odd:my-[30px]"
             )}
         >
             <span className={cn(
                 "group-data-[active-nav=true]:scale-125",
                 "group-data-[active-nav=true]:text-midnight-600",
-                "group-data-[active-nav=true]:translate-x-2.5",
+                "group-data-[active-nav=true]:translate-x-3",
                 "transition-all",
                 "hover:text-midnight-600",
-                "hover:scale-125",
-                "origin-left"
+                "hover:translate-x-3",
+                "origin-left",
+                "leading-[30px]"
             )}>
                 {children}
             </span>
@@ -34,40 +36,41 @@ const Nav = () => {
     const [activeNav, setActiveNav] = useState<number>(0);
     const isClickedRef = useRef(false);
     const navRef = useRef<HTMLDivElement>(null);
-    const aboutDiv = useRef<HTMLDivElement|null>(null);
     const experiencesDiv = useRef<HTMLDivElement|null>(null);
     const projectsDiv = useRef<HTMLDivElement|null>(null);
 
     const scrollElement = (key: string) => {
         const element = document.querySelector(`div[data-nav=${key}]`)
         if(element) {
-            const top = (element.getBoundingClientRect().top + document.documentElement.scrollTop) - 194;
+            const navY = navRef.current?.getBoundingClientRect().y ?? 0;
+            const top = (element.getBoundingClientRect().top + document.documentElement.scrollTop) - navY;
             window.scrollTo({top, behavior: "smooth"});
         }
     }
     useEffect(() => {
-        aboutDiv.current = document.querySelector("div[data-nav='about']")
         experiencesDiv.current = document.querySelector("div[data-nav='experiences']")
         projectsDiv.current = document.querySelector("div[data-nav='projects']")
 
-        const handleTrackScroll = () => {
-            if(navRef.current && aboutDiv.current && experiencesDiv.current && projectsDiv.current) {
+        const handleTrackScroll = (isInit?:boolean) => {
+            if(navRef.current && experiencesDiv.current && projectsDiv.current) {
                 const navY = navRef.current.getBoundingClientRect().y;
                 const experiencesY = experiencesDiv.current.getBoundingClientRect().y;
                 const projectsY = projectsDiv.current.getBoundingClientRect().y;
-                if(isClickedRef.current) return;
+                if(!isInit && isClickedRef.current) return;
+                let newNavIdx = 0;
                 if(projectsY <= navY) {
-                    setActiveNav(2)
+                    newNavIdx = 2;
                 } else if(experiencesY <= navY) {
-                    setActiveNav(1)
-                } else {
-                    setActiveNav(0)
+                    newNavIdx = 1;
                 }
+                setActiveNav(newNavIdx);
             }
         }
 
+        handleTrackScroll(true);
+
         const handleScroll = () => {
-            requestAnimationFrame(handleTrackScroll)
+            requestAnimationFrame(() => handleTrackScroll())
         }
 
         const handleResetIsClicked = () => {
@@ -84,13 +87,13 @@ const Nav = () => {
     }, [])
     return (
         <nav className="hidden lg:block" ref={navRef}>
-            <ul className="flex flex-col gap-[30px] relative">
+            <ul className="relative w-max">
                 <span
                     style={{top: activeNav * 60}}
                     className={cn(
                         "transition-all",
                         "absolute left-0",
-                        "w-0.5 h-[25px] bg-midnight-600 rounded"
+                        "w-0.5 h-[30px] bg-midnight-600 rounded"
                     )}
                 ></span>
                 {["ABOUT", "EXPERIENCES", "PROJECTS"].map((label, idx) => (
