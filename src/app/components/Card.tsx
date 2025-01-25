@@ -1,48 +1,45 @@
+"use client";
 import Image from 'next/image';
-import {CardPropsType, CardTitlePropsType, CardType} from "@/app/types";
+import {CardPropsType, CardType} from "@/app/types";
 import {cn} from "@/app/utils";
 import ExternalLinkIcon from "@/app/icons/External_link.svg";
-
-const CardTitle = (props: CardTitlePropsType) => {
-    if(props.link !== undefined) return (
-        <a href={props.link} target="_blank" rel="noopener noreferrer" className="flex gap-2 items-center group-hover:text-midnight-600">
-            <h3>{props.title}</h3>
-            <ExternalLinkIcon />
-        </a>
-    )
-
-    return (
-        <h3 className="group-hover:text-midnight-600">{props.title}</h3>
-    )
-}
 
 const Card = (props: CardPropsType) => {
     const {
         tags,
         title,
         description,
-        type
+        type,
+        externalLink
     } = props;
     return (
-        <div className={cn(
-            "group",
-            "lg:p-[25px] p-4",
-            "flex flex-col gap-2.5",
-            "rounded-[20px]",
-            "cursor-pointer",
-            "hover:shadow-card",
-            "hover:bg-midnight-alpha-50",
-            "hover:backdrop-blur-sm"
-        )}>
+        <div 
+            className={cn(
+                "group",
+                "lg:p-[25px] p-4",
+                "flex flex-col gap-2.5",
+                "rounded-[20px]",
+                "cursor-pointer",
+                "hover:shadow-card",
+                "hover:bg-midnight-alpha-50",
+                "hover:backdrop-blur-sm"
+            )}
+            onClick={() => {
+                if(externalLink) window.open(externalLink);
+            }}
+        >
             <header
                 className={cn(
                     'flex flex-col lg:flex-row lg:justify-between lg:items-center'
                 )}
             >
-                <CardTitle
-                    title={title}
-                    link={props.externalLink}
-                />
+                <h3 className={cn(
+                    "group-hover:text-midnight-600",
+                    externalLink && "flex gap-2 items-center group-hover:text-midnight-600"
+                )}
+                >
+                    {title}{!!externalLink && <ExternalLinkIcon />}
+                </h3>
                 {
                     type === CardType.EXP && (
                         <span>
