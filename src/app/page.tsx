@@ -50,7 +50,7 @@ const projects: CardPropsType[] = [
     {
         type: CardType.PROJ,
         title: "POMO",
-        externalLink: "https://jlimpiado.github.io/pomo",
+        externalLink: "https://jbl-pomo.vercel.app",
         description: <>Web app for those who uses and will be using the <Highlight>Pomodoro
             technique</Highlight> to do productive works.</>,
         tags: ['ReactJS', 'Typescript', 'Javascript', 'CSS'],
